@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Be My Valentine 💘</title>
+  <style>
+    body {
+      height: 100vh;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      font-family: "Arial", sans-serif;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      background: white;
+      padding: 30px 20px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      width: 90%;
+      max-width: 350px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 25px;
+    }
+
+    .buttons {
+      position: relative;
+      height: 120px;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    #yesBtn {
+      background-color: #ff4d6d;
+      color: white;
+      position: relative;
+      z-index: 2;
+    }
+
+    #noBtn {
+      background-color: #adb5bd;
+      color: white;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 60px;
+      z-index: 1;
+    }
+
+    #yay {
+      font-size: 36px;
+      color: #ff4d6d;
+      margin-top: 20px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Will you be my Valentine? 💖</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="noBtn">No 💔</button>
+    </div>
+
+    <div id="yay">YAY! 🎉💘</div>
+  </div>
+
+  <script>
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const yay = document.getElementById("yay");
+
+    function moveNoButton() {
+      const padding = 20;
+      const maxX = window.innerWidth - noBtn.offsetWidth - padding;
+      const maxY = window.innerHeight - noBtn.offsetHeight - padding;
+
+      const x = Math.random() * maxX;
+      const y = Math.random() * maxY;
+
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
+    }
+
+    // Move No button on desktop hover
+    noBtn.addEventListener("mouseenter", moveNoButton);
+
+    // Move No button on mobile touch (tap-proof)
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault(); // prevent tap
+      moveNoButton();
+    });
+
+    // Show YAY when Yes is clicked
+    yesBtn.addEventListener("click", () => {
+      yay.style.display = "block";
+    });
+  </script>
+
+</body>
+</html>
